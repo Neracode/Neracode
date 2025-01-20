@@ -78,7 +78,7 @@ const Navbar = () => {
           className={`${!isDropdownActive ? "max-md:ml-16" : "max-md:ml-4"
             } duration-700 ease-[cubic-bezier(.75, .2, .2, 0.94)] transition-all delay-250 text-xl text-[1.5rem] md:text-xl z-[99]`}
         >
-          Neracode
+          Neracode 
         </Link>
         <div
           className={`${!isDropdownActive ? "max-md:left-3" : "-translate-x-14 left-[100%]"
@@ -106,6 +106,9 @@ const Navbar = () => {
           </Link>
           <Link to="/#mentors" onClick={handleLinkClick}>
             Mentors
+          </Link>
+          <Link to="/project/frontend" onClick={handleLinkClick}>
+            Showcase
           </Link>
           <Link to="/#contact" onClick={handleLinkClick}>
             Contact
