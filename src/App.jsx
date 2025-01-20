@@ -1,12 +1,15 @@
-import React from "react";
-import Home from "./pages/Home";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import DetailGalery from "./pages/DetailGalery";
-import Footer from "./components/footer/Footer";
-import Navbar from "./components/navbar/Navbar";
-import Backend from "./pages/project/Backend";
-import Frontend from "./pages/project/Frontend";
-import NotFound from "./pages/NotFound";
+import Home from 'src/pages/Home';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from 'react-router-dom';
+import DetailGalery from 'src/pages/DetailGalery';
+import Footer from 'src/components/footer/Footer';
+import Navbar from 'src/components/navbar/Navbar';
+import Backend from 'src/pages/project/Backend';
+import Frontend from 'src/pages/project/Frontend';
+import NotFound from 'src/pages/NotFound';
 
 function App() {
   return (

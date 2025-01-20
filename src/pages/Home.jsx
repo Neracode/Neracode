@@ -1,17 +1,17 @@
-import Galery from "../components/galery/Galery"
-import Hero from "../components/hero/Hero"
-import About from "../components/about/About"
-import Mentors from "../components/mentors/Mentors"
+import Galery from 'src/components/galery/Galery';
+import Hero from 'src/components/hero/Hero';
+import About from 'src/components/about/About';
+import Mentors from 'src/components/mentors/Mentors';
 
 function Home() {
   return (
     <>
-        <Hero/>
-        <About/>
-        <Galery/>
-        <Mentors/>
+      <Hero />
+      <About />
+      <Galery />
+      <Mentors />
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;
