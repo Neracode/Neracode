@@ -1,23 +1,23 @@
-import Card from 'src/components/about/CardAbout';
-import MyContainer from 'src/components/template/MyCountainer';
-import { useEffect, useState } from 'react';
-import TimelineData from 'src/data/TimelineData';
-import { clubbingImages } from 'src/assets';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Card from "src/components/about/CardAbout";
+import MyContainer from "src/components/template/MyCountainer";
+import { useEffect, useState } from "react";
+import TimelineData from "src/data/TimelineData";
+import { iconsImages } from "src/assets";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 const About = () => {
   const [isDropdownClicked, setDropdownClicked] = useState(null);
 
   useEffect(() => {
     const closeDropdown = (e) => {
-      if (!e.target.closest('.dropdownContainer')) {
+      if (!e.target.closest(".dropdownContainer")) {
         setDropdownClicked(null);
       }
     };
 
-    document.addEventListener('click', closeDropdown);
+    document.addEventListener("click", closeDropdown);
 
     return () => {
-      document.removeEventListener('click', closeDropdown);
+      document.removeEventListener("click", closeDropdown);
     };
   }, []);
 
@@ -29,11 +29,10 @@ const About = () => {
             Apa sih itu Neracode?
           </div>
           <div className="text-lg leading-normal text-gray-600">
-            Neracode atau Next Generation Code merupakan klub
-            komunitas di SMKN 1 Kota Bekasi, dimana para siswa
-            berkumpul dalam mendalami dunia pemrograman. Ini adalah
-            klub yang menyediakan platform bagi siswa untuk belajar,
-            berlatih, dan berkolaborasi dalam berbagai proyek dan
+            Neracode atau Next Generation Code merupakan klub komunitas di SMKN
+            1 Kota Bekasi, dimana para siswa berkumpul dalam mendalami dunia
+            pemrograman. Ini adalah klub yang menyediakan platform bagi siswa
+            untuk belajar, berlatih, dan berkolaborasi dalam berbagai proyek dan
             aktivitas coding.
           </div>
         </div>
@@ -46,13 +45,13 @@ const About = () => {
             </div>
             <div className="text-xl font-light">
               Neracode bakalan ngajarin kamu mulai dari Fullstack Web
-              Development, UI/UX Design, dan Android Development
-              dengan menggunakan teknologi terbaru. Kita bakalan
-              bimbing kamu sampai kamu bosen lohh!
+              Development, UI/UX Design, dan Android Development dengan
+              menggunakan teknologi terbaru. Kita bakalan bimbing kamu sampai
+              kamu bosen lohh!
             </div>
             <LazyLoadImage
-              src={clubbingImages.clubbing2}
-              alt=""
+              src={iconsImages.group}
+              alt="Group"
               className="h-[14rem] bg-cover object-cover rounded-xl mt-[-.9rem]"
             />
           </div>

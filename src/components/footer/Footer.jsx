@@ -1,13 +1,14 @@
-import { iconsImages } from 'src/assets';
-import MyContainer from 'src/components/template/MyCountainer';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { iconsImages } from "src/assets";
+import MyContainer from "src/components/template/MyCountainer";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Footer = () => {
   return (
     <MyContainer
       containerId="footer"
       containerStyle="flex justify-between items-center flex-wrap gap-[3rem]"
-      background="bg-[#121212]">
+      background="bg-[#121212]"
+    >
       <div id="contact">
         <div className="flex items-center gap-4">
           <LazyLoadImage
@@ -15,9 +16,7 @@ const Footer = () => {
             alt=""
             className="w-[2rem] h-[2rem]"
           />
-          <div className="text-white font-semibold text-[1.4rem]">
-            Neracode
-          </div>
+          <div className="text-white font-semibold text-[1.4rem]">Neracode</div>
         </div>
         <div className="bg-white mt-[3rem] py-8 px-[2rem] flex justify-between items-center gap-[5rem] rounded-xl">
           <div className="text-16">
@@ -26,7 +25,8 @@ const Footer = () => {
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSeT8cX1sG1nKo1cYyQmgCm3bY3aL0ZoKdDg08cGMldhF4iqww/viewform"
             target="_blank"
-            rel="noreferrer">
+            rel="noreferrer"
+          >
             <button className="bg-[#121212] text-white py-4 px-[2rem] rounded-xl text-[1rem]">
               Join Now!
             </button>
@@ -35,24 +35,31 @@ const Footer = () => {
         <div className="flex gap-4 pt-[3rem]">
           <LazyLoadImage
             src={iconsImages.fb}
-            alt=""
+            alt="facebook"
             className="w-[2rem] h-[2rem]"
           />
           <LazyLoadImage
             src={iconsImages.twitter}
-            alt=""
+            alt="twitter"
             className="w-[2rem] h-[2rem]"
           />
           <LazyLoadImage
             src={iconsImages.li}
-            alt=""
+            alt="LinkedIn"
             className="w-[2rem] h-[2rem]"
           />
-          <LazyLoadImage
-            src={iconsImages.ig}
-            alt=""
-            className="w-[2rem] h-[2rem]"
-          />
+          <a
+            href="https://www.instagram.com/neracode/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <LazyLoadImage
+              src={iconsImages.ig}
+              alt="Instagram"
+              link="https://www.instagram.com/neracode/"
+              className="w-[2rem] h-[2rem] cursor-pointer"
+            />
+          </a>
         </div>
       </div>
       <div className="flex flex-wrap items-start text-white gap-[2rem]">
@@ -86,7 +93,7 @@ const Footer = () => {
                 alt=""
                 className="w-[2rem] h-[2rem]"
               />
-              <div>+62 819-0847-7337</div>
+              <div>+62 800-000-0000</div>
             </li>
             <li className="flex gap-2">
               <LazyLoadImage
@@ -94,7 +101,7 @@ const Footer = () => {
                 alt=""
                 className="w-[2rem] h-[2rem]"
               />
-              <div>rplsmkn1kotabekasi@gmail.com</div>
+              <div>neracode@gmail.com</div>
             </li>
             <li className="flex gap-2">
               <LazyLoadImage
