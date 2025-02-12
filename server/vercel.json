@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/feedback/(.*)",
+      "dest": "server.js"
+    }
+  ],
+  "env": {
+    "MONGODB_URI": "@mongodb_uri",
+    "INITIAL_ADMIN_TOKEN": "@initial_admin_token",
+    "GOOGLE_SCRIPT_URL": "@google_script_url"
+  }
+}
