@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import MyContainer from 'src/components/template/MyCountainer';
+import process from 'process'
 
 function Feedback() {
   // Form state variables
@@ -50,7 +51,7 @@ function Feedback() {
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/feedback/config');
+        const response = await fetch(`${process.env.VITE_API_URL}/api/feedback/config`);
         const data = await response.json();
         setConfig(data);
       } catch (error) {
