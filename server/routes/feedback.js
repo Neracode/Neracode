@@ -84,9 +84,7 @@ router.post('/submit', async (req, res) => {
   try {
     const googleScriptURL = process.env.GOOGLE_SCRIPT_URL;
     if (!googleScriptURL) {
-      throw new Error(
-        'GOOGLE_SCRIPT_URL is not defined in the environment variables'
-      );
+      throw new Error('GOOGLE_SCRIPT_URL is not defined in the environment variables');
     }
 
     console.log('Received payload:', req.body);

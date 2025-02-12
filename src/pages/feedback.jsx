@@ -50,7 +50,13 @@ function Feedback() {
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/feedback/config');
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        console.log('Using API URL for config:', apiUrl);
+        
+        const response = await fetch(`${apiUrl}/api/feedback/config`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         setConfig(data);
       } catch (error) {
@@ -114,14 +120,20 @@ function Feedback() {
       date: new Date().toISOString(), // client-generated timestamp
     };
 
-    const apiURL = 'http://localhost:5000/api/feedback/submit';
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    console.log('Using API URL for submission:', apiUrl);
 
     try {
-      const response = await fetch(apiURL, {
+      const response = await fetch(`${apiUrl}/api/feedback/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const jsonResponse = await response.json();
       console.log('Response from back-end:', jsonResponse);
       setResponseMessage('Masukan berhasil dikirim!');
