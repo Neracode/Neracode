@@ -39,8 +39,7 @@ function FeedBackConfig() {
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-        const response = await fetch(`${apiUrl}/api/feedback/config`);
+        const response = await fetch('http://localhost:5000/api/feedback/config');
         const data = await response.json();
         setConfig(data);
       } catch (error) {
@@ -74,8 +73,7 @@ function FeedBackConfig() {
     setMessage('');
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-      const response = await fetch(`${apiUrl}/api/feedback/config`, {
+      const response = await fetch('http://localhost:5000/api/feedback/config', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
