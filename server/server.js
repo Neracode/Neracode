@@ -22,3 +22,5 @@ app.use('/api/feedback', feedbackRouter);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+export default app;
