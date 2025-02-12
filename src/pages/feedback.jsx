@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import MyContainer from 'src/components/template/MyCountainer';
-import process from 'process'
 
 function Feedback() {
   // Form state variables
@@ -51,7 +50,8 @@ function Feedback() {
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const response = await fetch(`${process.env.VITE_API_URL}/api/feedback/config`);
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const response = await fetch(`${apiUrl}/api/feedback/config`);
         const data = await response.json();
         setConfig(data);
       } catch (error) {
@@ -112,13 +112,13 @@ function Feedback() {
     const data = {
       emoji: selectedEmoji,
       message: message,
-      date: new Date().toISOString(), // client-generated timestamp
+      date: new Date().toISOString(),
     };
 
-    const apiURL = 'http://localhost:5000/api/feedback/submit';
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
     try {
-      const response = await fetch(apiURL, {
+      const response = await fetch(`${apiUrl}/api/feedback/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
