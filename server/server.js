@@ -1,9 +1,19 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import express from 'express';
 import cors from 'cors';
 import process from 'process';
 import feedbackRouter from './routes/feedback.js';
 import { connectDB } from './utils/db.js';
+
+// Get the parent directory path
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const parentDir = dirname(__dirname);
+
+// Load .env from parent directory
+dotenv.config({ path: join(parentDir, '.env') });
 
 const app = express();
 const PORT = process.env.PORT || 5000;
