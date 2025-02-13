@@ -10,7 +10,6 @@ function Feedback() {
 
   // Open status state variable
   const [isOpen, setIsOpen] = useState(false);
-  const [config, setConfig] = useState(null);
 
   // Define emoji options with corresponding descriptions
   const emojiOptions = [
@@ -21,69 +20,21 @@ function Feedback() {
     { emoji: '😀', description: 'Sangat Puas' },
   ];
 
-  const daysOfWeek = [
-    'Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'
-  ];
-
-  // Helper function to format time in WIB
-  const formatTimeWIB = (hour) => {
-    return `${hour.toString().padStart(2, '0')}:00 WIB`;
-  };
-
-  // Helper function to generate schedule message
-  const getScheduleMessage = () => {
-    if (!config) return '';
-
-    const allowedDaysText = config.allowedDays
-      .sort((a, b) => a - b)
-      .map(day => daysOfWeek[day])
-      .reduce((text, day, index, array) => {
-        if (index === 0) return day;
-        if (index === array.length - 1) return `${text} dan ${day}`;
-        return `${text}, ${day}`;
-      });
-
-    return `Maaf, layanan ini hanya tersedia pada hari ${allowedDaysText} pukul ${formatTimeWIB(config.allowedHours.start)} hingga ${formatTimeWIB(config.allowedHours.end)}.`;
-  };
-
-  // Fetch configuration from backend
-  useEffect(() => {
-    const fetchConfig = async () => {
-      try {
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-        console.log('Using API URL for config:', apiUrl);
-        
-        const response = await fetch(`${apiUrl}/api/feedback/config`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setConfig(data);
-      } catch (error) {
-        console.error('Gagal mengambil konfigurasi:', error);
-      }
-    };
-    fetchConfig();
-  }, []);
-
   // useEffect to check open status
   useEffect(() => {
     const checkOpenStatus = () => {
-      if (!config) return;
-
       const now = new Date();
+      // Convert the current time to Jakarta time using toLocaleString with the Asia/Jakarta timeZone.
       const jakartaTime = new Date(
         now.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })
       );
 
+      // In JavaScript, getDay() returns 6 for Saturday.
       const day = jakartaTime.getDay();
       const hour = jakartaTime.getHours();
 
-      setIsOpen(
-        config.allowedDays.includes(day) &&
-        hour >= config.allowedHours.start &&
-        hour < config.allowedHours.end
-      );
+      // Allowed hours: Saturday from 15:00 WIB to 17:00 WIB
+      setIsOpen(day === 6 && hour >= 15 && hour < 17);
     };
 
     // Check immediately on mount...
@@ -91,7 +42,7 @@ function Feedback() {
     // ...and then set an interval to check every minute.
     const intervalId = setInterval(checkOpenStatus, 60000);
     return () => clearInterval(intervalId);
-  }, [config]);
+  }, []);
 
   // Handle emoji selection
   const handleEmojiClick = (description) => {
@@ -120,20 +71,14 @@ function Feedback() {
       date: new Date().toISOString(), // client-generated timestamp
     };
 
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-    console.log('Using API URL for submission:', apiUrl);
+    const apiURL = 'http://localhost:5000/api';
 
     try {
-      const response = await fetch(`${apiUrl}/api/feedback/submit`, {
+      const response = await fetch(apiURL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
       const jsonResponse = await response.json();
       console.log('Response from back-end:', jsonResponse);
       setResponseMessage('Masukan berhasil dikirim!');
@@ -224,7 +169,8 @@ function Feedback() {
             Layanan Sedang Tutup
           </h2>
           <p className="mt-4 text-gray-500">
-            {getScheduleMessage()}
+            Maaf, layanan ini hanya tersedia pada hari Sabtu pukul
+            15:00 WIB hingga 17:00 WIB.
           </p>
         </div>
       )}

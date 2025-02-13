@@ -1,40 +1,41 @@
-import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
+import axios from 'axios';
 import process from 'process';
-import feedbackRouter from './routes/feedback.js';
-import { connectDB } from './utils/db.js';
-
-// Get the parent directory path
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const parentDir = dirname(__dirname);
-
-// Load .env from parent directory
-dotenv.config({ path: join(parentDir, '.env') });
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Connect to MongoDB
-connectDB();
-
 // Middleware
-app.use(cors({
-  origin: ['https://neracode.vercel.app', 'http://localhost:5173'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use('/api/feedback', feedbackRouter);
+app.post('/api', async (req, res) => {
+  try {
+    const googleScriptURL = process.env.GOOGLE_SCRIPT_URL;
+    if (!googleScriptURL) {
+      throw new Error(
+        'GOOGLE_SCRIPT_URL is not defined in the environment variables'
+      );
+    }
+
+    console.log('Received payload:', req.body);
+
+    const response = await axios.post(googleScriptURL, req.body, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.error('Proxy error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch data' });
+  }
+});
 
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-export default app;

@@ -11,7 +11,6 @@ import Navbar from 'src/components/navbar/Navbar';
 // import Frontend from 'src/pages/project/Frontend';
 import NotFound from 'src/pages/NotFound';
 import Feedback from 'src/pages/feedback';
-import FeedBackConfig from 'src/pages/FeedBackConfig';
 
 function App() {
   return (
@@ -23,7 +22,6 @@ function App() {
         {/* <Route path="/project/frontend" element={<Frontend />} />
         <Route path="/project/backend" element={<Backend />} /> */}
         <Route path="/feedback" element={<Feedback />} />
-        <Route path="/config" element={<FeedBackConfig />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
