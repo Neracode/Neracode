@@ -71,7 +71,10 @@ function Feedback() {
       date: new Date().toISOString(), // client-generated timestamp
     };
 
-    const apiURL = 'http://localhost:5000/api';
+    // Use environment variable to determine API URL
+    const apiURL = import.meta.env.VITE_APP_URL 
+      ? `${import.meta.env.VITE_APP_URL}/api` 
+      : 'http://localhost:5000/api';
 
     try {
       const response = await fetch(apiURL, {
