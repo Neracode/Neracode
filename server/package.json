@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "micro -l tcp://localhost:5000",
+    "start": "micro -l tcp://0.0.0.0:$PORT",
     "dev": "micro -l tcp://localhost:5000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
