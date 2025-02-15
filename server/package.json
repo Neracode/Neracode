@@ -5,7 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
+    "start": "micro -l tcp://localhost:5000",
+    "dev": "micro -l tcp://localhost:5000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,8 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.9",
-    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "micro": "^10.0.0",
+    "micro-cors": "^0.1.1"
   }
 }

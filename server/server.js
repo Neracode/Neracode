@@ -1,55 +1,57 @@
+import { send, json } from 'micro';
+import cors from 'micro-cors';
+import axios from 'axios';
 import * as dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import express from 'express';
-import cors from 'cors';
-import axios from 'axios';
 import process from 'process';
 
+// Resolve __dirname and load environment variables
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+// Setup CORS to allow requests from your development and production URLs
+const corsHandler = cors({
+  origin: '*',
+  allowMethods: ['POST']
+});
 
-// Middleware
-const corsOptions = {
-  origin: [
-    'http://localhost:5173',  // Local Vite dev server
-    process.env.VITE_APP_URL  // Production URL
-  ].filter(Boolean),  // Remove any undefined values
-  optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
-app.use(express.json());
-
-app.post('/api/feedback', async (req, res) => {
+// Define the handler function
+const handler = async (req, res) => {
+  // Handle preflight OPTIONS request
+  if (req.method === 'OPTIONS') {
+    return send(res, 200);
+  }
+  
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST');
+    return send(res, 405, `Method ${req.method} Not Allowed`);
+  }
+  
   try {
+    // Parse JSON payload from the request
+    const body = await json(req);
     const googleScriptURL = process.env.GOOGLE_SCRIPT_URL;
+    
     if (!googleScriptURL) {
-      throw new Error(
-        'GOOGLE_SCRIPT_URL is not defined in the environment variables'
-      );
+      throw new Error('GOOGLE_SCRIPT_URL is not defined in the environment variables');
     }
-
-    console.log('Received payload:', req.body);
-
-    const response = await axios.post(googleScriptURL, req.body, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    
+    console.log('Received payload:', body);
+    
+    // Forward the request to your Google Script URL
+    const response = await axios.post(googleScriptURL, body, {
+      headers: { 'Content-Type': 'application/json' }
     });
-
-    res.json(response.data);
+    
+    // Return the response data as JSON
+    return send(res, 200, response.data);
   } catch (error) {
     console.error('Proxy error:', error.message);
-    res.status(500).json({ error: 'Failed to fetch data' });
+    return send(res, 500, { error: 'Failed to fetch data' });
   }
-});
+};
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Export the function wrapped with the CORS handler
+export default corsHandler(handler);

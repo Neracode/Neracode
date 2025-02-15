@@ -34,7 +34,7 @@ function Feedback() {
       const hour = jakartaTime.getHours();
 
       // Allowed hours: Saturday from 14:00 WIB to 17:00 WIB
-      setIsOpen(day === 6 && hour >= 14 && hour < 16);
+      setIsOpen(day === 6 && hour >= 20 && hour < 23);
     };
 
     // Check immediately on mount...
@@ -74,7 +74,7 @@ function Feedback() {
     // Use environment variable to determine API URL
     const apiURL = import.meta.env.VITE_APP_URL 
       ? `${import.meta.env.VITE_APP_URL}/api/feedback` 
-      : 'http://localhost:5000/api';
+      : 'http://localhost:5000/api/feedback';
 
     try {
       const response = await fetch(apiURL, {
