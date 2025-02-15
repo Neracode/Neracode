@@ -25,7 +25,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.post('/api', async (req, res) => {
+app.post('/api/feedback', async (req, res) => {
   try {
     const googleScriptURL = process.env.GOOGLE_SCRIPT_URL;
     if (!googleScriptURL) {

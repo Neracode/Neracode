@@ -73,7 +73,7 @@ function Feedback() {
 
     // Use environment variable to determine API URL
     const apiURL = import.meta.env.VITE_APP_URL 
-      ? `${import.meta.env.VITE_APP_URL}/api` 
+      ? `${import.meta.env.VITE_APP_URL}/api/feedback` 
       : 'http://localhost:5000/api';
 
     try {
