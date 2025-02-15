@@ -33,8 +33,8 @@ function Feedback() {
       const day = jakartaTime.getDay();
       const hour = jakartaTime.getHours();
 
-      // Allowed hours: Saturday from 15:00 WIB to 17:00 WIB
-      setIsOpen(day === 6 && hour >= 15 && hour < 17);
+      // Allowed hours: Saturday from 14:00 WIB to 17:00 WIB
+      setIsOpen(day === 6 && hour >= 14 && hour < 16);
     };
 
     // Check immediately on mount...
@@ -170,7 +170,7 @@ function Feedback() {
           </h2>
           <p className="mt-4 text-gray-500">
             Maaf, layanan ini hanya tersedia pada hari Sabtu pukul
-            15:00 WIB hingga 17:00 WIB.
+            14:00 WIB hingga 16:00 WIB.
           </p>
         </div>
       )}
