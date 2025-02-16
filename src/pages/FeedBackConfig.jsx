@@ -21,7 +21,7 @@ function FeedBackConfig() {
   ];
 
   const apiUrl = import.meta.env.VITE_API_URL
-    ? `${import.meta.env.VITE_API_URL}/api`
+    ? `${import.meta.env.VITE_API_URL}`
     : 'http://localhost:5000';
 
   // Helper function to convert hour number to time string
@@ -43,7 +43,7 @@ function FeedBackConfig() {
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const response = await fetch(`${apiUrl}/feedback/config`);
+        const response = await fetch(`${apiUrl}/api/config`);
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(
@@ -90,7 +90,7 @@ function FeedBackConfig() {
     }
 
     try {
-      const response = await fetch(`${apiUrl}/feedback/config`, {
+      const response = await fetch(`${apiUrl}/api/config`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

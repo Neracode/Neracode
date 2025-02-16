@@ -78,10 +78,9 @@ const submitFeedback = async (req, res) => {
 
 // Define routes
 const feedbackRouter = [
-  // Note: Removed the '/api' prefix
-  get('/feedback/config', handleErrors(getConfig)),
-  put('/feedback/config', handleErrors(updateConfig)),
-  post('/feedback/submit', handleErrors(submitFeedback)),
+  get('/api/config', handleErrors(getConfig)),
+  put('/api/config', handleErrors(updateConfig)),
+  post('/api/submit', handleErrors(submitFeedback)),
 ];
 
 export default feedbackRouter;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import MyContainer from 'src/components/template/MyCountainer';
 
 const apiUrl = import.meta.env.VITE_API_URL
-  ? `${import.meta.env.VITE_API_URL}/api`
+  ? `${import.meta.env.VITE_API_URL}`
   : 'http://localhost:5000';
 
 function Feedback() {
@@ -62,7 +62,7 @@ function Feedback() {
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const response = await fetch(`${apiUrl}/feedback/config`);
+        const response = await fetch(`${apiUrl}/api/config`);
 
         if (!response.ok) {
           const errorData = await response.json();
@@ -134,7 +134,7 @@ function Feedback() {
     };
 
     try {
-      const response = await fetch(`${apiUrl}/feedback/submit`, {
+      const response = await fetch(`${apiUrl}/api/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
