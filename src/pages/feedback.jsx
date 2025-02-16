@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import MyContainer from 'src/components/template/MyCountainer';
 
+const apiUrl = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api`
+  : 'http://localhost:5000';
+
 function Feedback() {
   // Form state variables
   const [selectedEmoji, setSelectedEmoji] = useState('');
@@ -56,13 +60,8 @@ function Feedback() {
 
   // Fetch configuration from backend
   useEffect(() => {
-    // Modify the fetch config function to better handle Micro responses
     const fetchConfig = async () => {
       try {
-        const apiUrl = import.meta.env.VITE_API_URL
-          ? `${import.meta.env.VITE_API_URL}`
-          : 'http://localhost:5000';
-
         const response = await fetch(`${apiUrl}/feedback/config`);
 
         if (!response.ok) {
@@ -115,7 +114,6 @@ function Feedback() {
   };
 
   // Handle form submission
-  // Modify the submit function to handle Micro's error responses
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -134,10 +132,6 @@ function Feedback() {
       message: message,
       date: new Date().toISOString(),
     };
-
-    const apiUrl = import.meta.env.VITE_API_URL
-      ? `${import.meta.env.VITE_API_URL}`
-      : 'http://localhost:5000';
 
     try {
       const response = await fetch(`${apiUrl}/feedback/submit`, {

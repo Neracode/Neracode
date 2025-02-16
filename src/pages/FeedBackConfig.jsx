@@ -8,7 +8,7 @@ function FeedBackConfig() {
   });
   const [token, setToken] = useState('');
   const [message, setMessage] = useState('');
-  const [loading, setLoading] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const daysOfWeek = [
     { value: 0, label: 'Minggu' },
@@ -19,6 +19,10 @@ function FeedBackConfig() {
     { value: 5, label: 'Jumat' },
     { value: 6, label: 'Sabtu' },
   ];
+
+  const apiUrl = import.meta.env.VITE_API_URL
+    ? `${import.meta.env.VITE_API_URL}/api`
+    : 'http://localhost:5000';
 
   // Helper function to convert hour number to time string
   const hourToTimeString = (hour) => {
@@ -35,15 +39,11 @@ function FeedBackConfig() {
     return parseInt(timeString.split(':')[0]);
   };
 
-  // Fetch current config
+  // Fetch current config on mount
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const apiUrl = import.meta.env.VITE_API_URL
-          ? `${import.meta.env.VITE_API_URL}`
-          : 'http://localhost:5000';
         const response = await fetch(`${apiUrl}/feedback/config`);
-
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(
@@ -51,7 +51,6 @@ function FeedBackConfig() {
               `HTTP error! status: ${response.status}`
           );
         }
-
         const data = await response.json();
         setConfig(data);
       } catch (error) {
@@ -91,9 +90,6 @@ function FeedBackConfig() {
     }
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL
-        ? `${import.meta.env.VITE_API_URL}`
-        : 'http://localhost:5000';
       const response = await fetch(`${apiUrl}/feedback/config`, {
         method: 'PUT',
         headers: {
