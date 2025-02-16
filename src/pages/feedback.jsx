@@ -10,6 +10,7 @@ function Feedback() {
 
   // Open status state variable
   const [isOpen, setIsOpen] = useState(false);
+  const [config, setConfig] = useState(null);
 
   // Define emoji options with corresponding descriptions
   const emojiOptions = [
@@ -20,21 +21,83 @@ function Feedback() {
     { emoji: '😀', description: 'Sangat Puas' },
   ];
 
+  const daysOfWeek = [
+    'Minggu',
+    'Senin',
+    'Selasa',
+    'Rabu',
+    'Kamis',
+    'Jumat',
+    'Sabtu',
+  ];
+
+  // Helper function to format time in WIB
+  const formatTimeWIB = (hour) => {
+    return `${hour.toString().padStart(2, '0')}:00 WIB`;
+  };
+
+  // Helper function to generate schedule message
+  const getScheduleMessage = () => {
+    if (!config) return '';
+
+    const allowedDaysText = config.allowedDays
+      .sort((a, b) => a - b)
+      .map((day) => daysOfWeek[day])
+      .reduce((text, day, index, array) => {
+        if (index === 0) return day;
+        if (index === array.length - 1) return `${text} dan ${day}`;
+        return `${text}, ${day}`;
+      });
+
+    return `Maaf, layanan ini hanya tersedia pada hari ${allowedDaysText} pukul ${formatTimeWIB(
+      config.allowedHours.start
+    )} hingga ${formatTimeWIB(config.allowedHours.end)}.`;
+  };
+
+  // Fetch configuration from backend
+  useEffect(() => {
+    // Modify the fetch config function to better handle Micro responses
+    const fetchConfig = async () => {
+      try {
+        const apiUrl =
+          import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const response = await fetch(`${apiUrl}/api/feedback/config`);
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(
+            errorData.error ||
+              `HTTP error! status: ${response.status}`
+          );
+        }
+
+        const data = await response.json();
+        setConfig(data);
+      } catch (error) {
+        console.error('Gagal mengambil konfigurasi:', error.message);
+      }
+    };
+    fetchConfig();
+  }, []);
+
   // useEffect to check open status
   useEffect(() => {
     const checkOpenStatus = () => {
+      if (!config) return;
+
       const now = new Date();
-      // Convert the current time to Jakarta time using toLocaleString with the Asia/Jakarta timeZone.
       const jakartaTime = new Date(
         now.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })
       );
 
-      // In JavaScript, getDay() returns 6 for Saturday.
       const day = jakartaTime.getDay();
       const hour = jakartaTime.getHours();
 
-      // Allowed hours
-      setIsOpen(day === 6 && hour >= 23);
+      setIsOpen(
+        config.allowedDays.includes(day) &&
+          hour >= config.allowedHours.start &&
+          hour < config.allowedHours.end
+      );
     };
 
     // Check immediately on mount...
@@ -42,7 +105,7 @@ function Feedback() {
     // ...and then set an interval to check every minute.
     const intervalId = setInterval(checkOpenStatus, 60000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [config]);
 
   // Handle emoji selection
   const handleEmojiClick = (description) => {
@@ -50,12 +113,12 @@ function Feedback() {
   };
 
   // Handle form submission
+  // Modify the submit function to handle Micro's error responses
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setResponseMessage('');
 
-    // Validate that an emoji was selected
     if (!selectedEmoji) {
       setResponseMessage(
         'Silakan pilih emoji untuk berbagi perasaan Anda.'
@@ -64,33 +127,38 @@ function Feedback() {
       return;
     }
 
-    // Build the payload to send
     const data = {
       emoji: selectedEmoji,
       message: message,
-      date: new Date().toISOString(), // client-generated timestamp
+      date: new Date().toISOString(),
     };
 
-    // Use environment variable to determine API URL
-    const apiURL = import.meta.env.VITE_APP_URL 
-      ? `${import.meta.env.VITE_APP_URL}/api/feedback` 
-      : 'http://localhost:5000/api/feedback';
+    const apiUrl =
+      import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
     try {
-      const response = await fetch(apiURL, {
+      const response = await fetch(`${apiUrl}/api/feedback/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
+
       const jsonResponse = await response.json();
-      console.log('Response from back-end:', jsonResponse);
+
+      if (!response.ok) {
+        throw new Error(
+          jsonResponse.error || 'Gagal mengirim masukan'
+        );
+      }
+
       setResponseMessage('Masukan berhasil dikirim!');
-      // Reset form
       setSelectedEmoji('');
       setMessage('');
     } catch (error) {
-      console.error('Submission error:', error);
-      setResponseMessage('Gagal mengirim masukan. Silakan coba lagi');
+      console.error('Submission error:', error.message);
+      setResponseMessage(
+        error.message || 'Gagal mengirim masukan. Silakan coba lagi'
+      );
     } finally {
       setLoading(false);
     }
@@ -171,10 +239,7 @@ function Feedback() {
           <h2 className="text-4xl font-bold text-gray-900">
             Layanan Sedang Tutup
           </h2>
-          <p className="mt-4 text-gray-500">
-            Maaf, layanan ini hanya tersedia pada hari Sabtu pukul
-            14:00 WIB hingga 16:00 WIB.
-          </p>
+          <p className="mt-4 text-gray-500">{getScheduleMessage()}</p>
         </div>
       )}
     </MyContainer>
