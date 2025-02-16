@@ -39,8 +39,9 @@ function FeedBackConfig() {
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const apiUrl =
-          import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const apiUrl = import.meta.env.VITE_API_URL
+          ? `${import.meta.env.VITE_API_URL}`
+          : 'http://localhost:5000';
         const response = await fetch(`${apiUrl}/api/feedback/config`);
 
         if (!response.ok) {
@@ -90,8 +91,9 @@ function FeedBackConfig() {
     }
 
     try {
-      const apiUrl =
-        import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const apiUrl = import.meta.env.VITE_API_URL
+        ? `${import.meta.env.VITE_API_URL}`
+        : 'http://localhost:5000';
       const response = await fetch(`${apiUrl}/api/feedback/config`, {
         method: 'PUT',
         headers: {
