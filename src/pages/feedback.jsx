@@ -59,8 +59,10 @@ function Feedback() {
     // Modify the fetch config function to better handle Micro responses
     const fetchConfig = async () => {
       try {
-        const apiUrl =
-          import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const apiUrl = import.meta.env.VITE_API_URL
+          ? `${import.meta.env.VITE_API_URL}`
+          : 'http://localhost:5000';
+
         const response = await fetch(`${apiUrl}/api/feedback/config`);
 
         if (!response.ok) {
@@ -133,8 +135,9 @@ function Feedback() {
       date: new Date().toISOString(),
     };
 
-    const apiUrl =
-      import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const apiUrl = import.meta.env.VITE_API_URL
+      ? `${import.meta.env.VITE_API_URL}`
+      : 'http://localhost:5000';
 
     try {
       const response = await fetch(`${apiUrl}/api/feedback/submit`, {
