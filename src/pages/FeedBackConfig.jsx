@@ -42,7 +42,7 @@ function FeedBackConfig() {
         const apiUrl = import.meta.env.VITE_API_URL
           ? `${import.meta.env.VITE_API_URL}`
           : 'http://localhost:5000';
-        const response = await fetch(`${apiUrl}/api/feedback/config`);
+        const response = await fetch(`${apiUrl}/feedback/config`);
 
         if (!response.ok) {
           const errorData = await response.json();
@@ -94,7 +94,7 @@ function FeedBackConfig() {
       const apiUrl = import.meta.env.VITE_API_URL
         ? `${import.meta.env.VITE_API_URL}`
         : 'http://localhost:5000';
-      const response = await fetch(`${apiUrl}/api/feedback/config`, {
+      const response = await fetch(`${apiUrl}/feedback/config`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
