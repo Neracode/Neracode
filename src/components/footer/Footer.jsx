@@ -1,14 +1,13 @@
-import { iconsImages } from "src/assets";
-import MyContainer from "src/components/template/MyCountainer";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { iconsImages } from 'src/assets';
+import MyContainer from 'src/components/template/MyCountainer';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Footer = () => {
   return (
     <MyContainer
       containerId="footer"
       containerStyle="flex justify-between items-center flex-wrap gap-[3rem]"
-      background="bg-[#121212]"
-    >
+      background="bg-[#121212]">
       <div id="contact">
         <div className="flex items-center gap-4">
           <LazyLoadImage
@@ -16,7 +15,9 @@ const Footer = () => {
             alt=""
             className="w-[2rem] h-[2rem]"
           />
-          <div className="text-white font-semibold text-[1.4rem]">Neracode</div>
+          <div className="text-white font-semibold text-[1.4rem]">
+            Neracode
+          </div>
         </div>
         <div className="bg-white mt-[3rem] py-8 px-[2rem] flex justify-between items-center gap-[5rem] rounded-xl">
           <div className="text-16">
@@ -25,8 +26,7 @@ const Footer = () => {
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSeT8cX1sG1nKo1cYyQmgCm3bY3aL0ZoKdDg08cGMldhF4iqww/viewform"
             target="_blank"
-            rel="noreferrer"
-          >
+            rel="noreferrer">
             <button className="bg-[#121212] text-white py-4 px-[2rem] rounded-xl text-[1rem]">
               Join Now!
             </button>
@@ -49,10 +49,10 @@ const Footer = () => {
             className="w-[2rem] h-[2rem]"
           />
           <a
+            aria-label="Instagram"
             href="https://www.instagram.com/neracode/"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <LazyLoadImage
               src={iconsImages.ig}
               alt="Instagram"

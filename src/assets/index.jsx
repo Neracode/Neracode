@@ -1,8 +1,8 @@
 // Clubbing
-import clubbing1 from "src/assets/galeri/clubbing/1.jpeg";
-import clubbing2 from "src/assets/galeri/clubbing/2.jpeg";
-import clubbing3 from "src/assets/galeri/clubbing/3.jpeg";
-import clubbing4 from "src/assets/galeri/clubbing/4.jpeg";
+import clubbing1 from 'src/assets/galeri/clubbing/1.jpeg';
+import clubbing2 from 'src/assets/galeri/clubbing/2.jpeg';
+import clubbing3 from 'src/assets/galeri/clubbing/3.jpeg';
+import clubbing4 from 'src/assets/galeri/clubbing/4.jpeg';
 
 export const clubbingImages = {
   clubbing1,
@@ -12,10 +12,10 @@ export const clubbingImages = {
 };
 
 // Neracode
-import neracode1 from "src/assets/galeri/neracode/1.jpg";
-import neracode2 from "src/assets/galeri/neracode/2.jpg";
-import neracode3 from "src/assets/galeri/neracode/3.jpg";
-import neracode4 from "src/assets/galeri/neracode/4.jpg";
+import neracode1 from 'src/assets/galeri/neracode/1.jpeg';
+import neracode2 from 'src/assets/galeri/neracode/2.jpeg';
+import neracode3 from 'src/assets/galeri/neracode/3.jpg';
+import neracode4 from 'src/assets/galeri/neracode/4.jpg';
 
 export const neracodeImages = {
   neracode1,
@@ -26,22 +26,22 @@ export const neracodeImages = {
 
 //  Icons or Other Assets
 //  PNG
-import curl_arrow from "src/assets/icons/png/curl-arrow.png";
-import g4712 from "src/assets/icons/png/g4712.png";
-import logo_neracode from "src/assets/icons/png/logo_neracode.png";
-import mail from "src/assets/icons/png/mail.png";
-import phone from "src/assets/icons/png/phone.png";
-import location from "src/assets/icons/png/location.png";
-import group from "src/assets/group.png";
+import curl_arrow from 'src/assets/icons/png/curl-arrow.png';
+import g4712 from 'src/assets/icons/png/g4712.png';
+import logo_neracode from 'src/assets/icons/png/logo_neracode.png';
+import mail from 'src/assets/icons/png/mail.png';
+import phone from 'src/assets/icons/png/phone.png';
+import location from 'src/assets/icons/png/location.png';
+import group from 'src/assets/group.png';
+import computer from 'src/assets/icons/png/computer.png';
 
 //  SVG
-import fb from "src/assets/icons/svg/fb.svg";
-import ig from "src/assets/icons/svg/ig.svg";
-import li from "src/assets/icons/svg/li.svg";
-import react from "src/assets/icons/svg/react.svg";
-import star from "src/assets/icons/svg/star.svg";
-import twitter from "src/assets/icons/svg/tw.svg";
-import computer from "src/assets/icons/svg/computer.svg";
+import fb from 'src/assets/icons/svg/fb.svg';
+import ig from 'src/assets/icons/svg/ig.svg';
+import li from 'src/assets/icons/svg/li.svg';
+import react from 'src/assets/icons/svg/react.svg';
+import star from 'src/assets/icons/svg/star.svg';
+import twitter from 'src/assets/icons/svg/tw.svg';
 
 export const iconsImages = {
   curl_arrow,
@@ -61,6 +61,6 @@ export const iconsImages = {
 };
 
 // Mentor
-import mentor1 from "../assets/mentor/mentor.png";
+import mentor1 from '../assets/mentor/mentor.png';
 
 export const mentorImages = { mentor1 };

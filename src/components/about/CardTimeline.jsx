@@ -1,5 +1,6 @@
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
-import { iconsImages } from '../../assets';
+import { iconsImages } from 'src/assets';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const CardTimeline = (props) => {
@@ -8,20 +9,20 @@ const CardTimeline = (props) => {
     <div
       className={`${
         dropDownOpen ? 'mb-4' : ''
-      } relative border-x-[2px] ransition-all`}>
+      } relative border-x-[2px] transition-all`}>
       <LazyLoadImage
         src={iconsImages.star}
-        alt=""
+        alt="Star Icon"
         className={`${
-          dropDownOpen ? 'opacity-[1]' : ''
-        } opacity-0 ease-in-out duration-700 absolute left-[-.65rem]`}
+          dropDownOpen ? 'opacity-100' : 'opacity-0'
+        } ease-in-out duration-700 absolute left-[-.65rem]`}
       />
       <LazyLoadImage
         src={iconsImages.star}
-        alt=""
+        alt="Star Icon"
         className={`${
-          dropDownOpen ? 'opacity-[1]' : ''
-        } opacity-0 ease-in-out duration-700 absolute right-[-.65rem]`}
+          dropDownOpen ? 'opacity-100' : 'opacity-0'
+        } ease-in-out duration-700 absolute right-[-.65rem]`}
       />
 
       <div className="overflow-hidden">
@@ -62,4 +63,4 @@ const CardTimeline = (props) => {
   );
 };
 
-export default CardTimeline;
+export default memo(CardTimeline); //  Wrapped with React.memo to avoid extra re-renders
