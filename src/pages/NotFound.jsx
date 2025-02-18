@@ -12,9 +12,12 @@ function NotFound() {
           <p className="mb-4 text-3xl tracking-tight font-bold text-gray-500 dark:text-gray-400 md:text-4xl">
             Something's missing.
           </p>
-          <p className="mb-4 text-lg font-medium text-gray-500 dark:text-gray-400">
-            Maaf, halaman itu tak ditemukan. Jelajahi lebih banyak di
-            beranda.{' '}
+          <p className="mb-4 text-lg font-medium text-gray-500 dark:text-gray-400 md:max-w-[50ch]">
+            Maaf, halaman itu tak ditemukan.
+            <span className="hidden md:inline">
+              {' '}
+              Silahkan kembali ke beranda.{' '}
+            </span>
           </p>
           <Link
             to="/"
