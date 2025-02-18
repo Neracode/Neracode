@@ -7,8 +7,8 @@ const Hero = () => {
   return (
     <MyContainer
       containerId="hero"
-      containerStyle="md:my-20 max-md:mb-20 flex justify-between items-center max-lg:flex-col-reverse gap-8">
-      <div className="flex-1">
+      containerStyle="md:my-20 max-md:mb-20 flex justify-between items-center max-lg:flex-col-reverse gap-8 overflow-hidden">
+      <div className="flex-1 max-sm:mt-10">
         <div className="flex items-center gap-[1rem]">
           <LazyLoadImage
             src={iconsImages.star}
@@ -72,8 +72,9 @@ const Hero = () => {
         src={iconsImages.computer}
         alt="Computer Illustration"
         effect="blur"
-        width={430}
-        height={430}
+        width={400}
+        height={350}
+        className="max-sm:mt-10"
       />
     </MyContainer>
   );

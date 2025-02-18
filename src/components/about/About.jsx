@@ -43,7 +43,7 @@ const About = () => {
           </div>
         </div>
       </MyContainer>
-      <MyContainer containerStyle="mb-20">
+      <MyContainer containerStyle="mb-8">
         <div className="grid grid-cols-1 gap-16 text-justify lg:grid-cols-2">
           <div className="flex flex-col gap-8">
             <div className="text-5xl max-sm:text-2xl">

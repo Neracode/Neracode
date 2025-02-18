@@ -35,7 +35,7 @@ const CardTimeline = (props) => {
           <Link
             to="https://roadmap.sh/"
             className="border border-black flex rounded-full px-4 py-1 w-fit hover:bg-[#25263A] hover:text-[#FEFCFB] ease-in-out group/btn">
-            <div>mulai belajar</div>
+            <div>Mulai Belajar</div>
             <svg
               className="-rotate-45 group-hover/btn:rotate-0 ease-in-out duration-300 w-6 h-6"
               viewBox="0 0 24 24"

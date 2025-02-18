@@ -10,7 +10,7 @@ import MentorsData from 'src/data/MentorsData';
 
 const Mentors = () => {
   return (
-    <MyContainer containerId="mentors" background="mt-20">
+    <MyContainer containerId="mentors" background="mt-8">
       <Splide
         hasTrack={false}
         options={{
@@ -30,10 +30,10 @@ const Mentors = () => {
         <div className="custom-wrapper">
           <div className="grid gap-4 grid-cols-[auto_auto] max-md:grid-cols-1 items-end">
             <div className="grid gap-2">
-              <h2 className="text-2xl max-sm:text-xs">
+              <h2 className="text-2xl max-sm:text-2xl">
                 Tim Neracode.
               </h2>
-              <h1 className="text-5xl max-sm:text-2xl">
+              <h1 className="text-5xl max-sm:text-xl">
                 Siapa aja sih mereka?
               </h1>
               <p className="text-lg mt-3">
