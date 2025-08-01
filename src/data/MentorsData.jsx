@@ -24,25 +24,25 @@ const MentorsData = [
   // MENTOR
   {
     name: 'Taufik',
-    posisi: 'Mentor Neracode',
+    posisi: 'Mentor Advisor Neracode',
     angkatan: 'angkatan 25',
     img: mentorImages.mentor1,
   },
   {
     name: 'Dicky',
-    posisi: 'Mentor Neracode',
+    posisi: 'Mentor & Advisor Neracode & Robotic',
     angkatan: 'angkatan 26',
-    img: mentorImages.mentor1,
-  },
-  {
-    name: 'Farid',
-    posisi: 'Mentor Neracode',
-    angkatan: 'angkatan 27',
     img: mentorImages.mentor1,
   },
   {
     name: 'Rasya',
     posisi: 'Mentor & Art Advisor Neracode',
+    angkatan: 'angkatan 27',
+    img: mentorImages.mentor1,
+  },
+  {
+    name: 'Farid',
+    posisi: 'Mentor Neracode & Advisor Robotic',
     angkatan: 'angkatan 27',
     img: mentorImages.mentor1,
   },
