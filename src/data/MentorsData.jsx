@@ -2,45 +2,45 @@ import { mentorImages } from 'src/assets';
 
 const MentorsData = [
   {
-    name: '-',
+    name: 'Fachri',
     posisi: 'Ketua Neracode',
-    angkatan: 'angkatan 26',
+    angkatan: 'angkatan 28',
     img: mentorImages.mentor1,
   },
   {
-    name: '-',
+    name: 'Reza',
     posisi: 'Wakil Neracode',
+    angkatan: 'angkatan 28',
+    img: mentorImages.mentor1,
+  },
+  {
+    name: 'Anissa',
+    posisi: 'Wakil Neracode',
+    angkatan: 'angkatan 28',
+    img: mentorImages.mentor1,
+  },
+  {
+    name: 'Taufik',
+    posisi: 'Mentor Neracode',
+    angkatan: 'angkatan 25',
+    img: mentorImages.mentor1,
+  },
+  {
+    name: 'Dicky',
+    posisi: 'Mentor Neracode',
     angkatan: 'angkatan 26',
     img: mentorImages.mentor1,
   },
   {
-    name: '-',
-    posisi: 'Ketua Neracode',
-    angkatan: 'angkatan 26',
+    name: 'Farid',
+    posisi: 'Mentor Neracode',
+    angkatan: 'angkatan 27',
     img: mentorImages.mentor1,
   },
   {
-    name: '-',
-    posisi: 'Ketua Neracode',
-    angkatan: 'angkatan 26',
-    img: mentorImages.mentor1,
-  },
-  {
-    name: '-',
-    posisi: 'Ketua Neracode',
-    angkatan: 'angkatan 26',
-    img: mentorImages.mentor1,
-  },
-  {
-    name: '-',
-    posisi: 'Ketua Neracode',
-    angkatan: 'angkatan 26',
-    img: mentorImages.mentor1,
-  },
-  {
-    name: '-',
-    posisi: 'Ketua Neracode',
-    angkatan: 'angkatan 26',
+    name: 'Rasya',
+    posisi: 'Mentor & Art Advisor Neracode',
+    angkatan: 'angkatan 27',
     img: mentorImages.mentor1,
   },
   {
